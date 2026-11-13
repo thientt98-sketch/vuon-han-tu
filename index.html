@@ -5,19 +5,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@700&family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=Long+Cang&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---a:#bfe3ff;--b:#ffc8de;--ink:#4a4470;--card:#fff;--bd:2px solid #fff;--r:24px;--sh:0 8px 24px #8fb5e655;--hl:#ff8fb8;--ac:#8ec9ff}
+--a:#bfe3ff;--b:#ffc8de;--ink:#3d4a7a;--card:#fff;--bd:3px solid #ffc8de;--r:26px;--sh:0 6px 0 #bfe3ff;--hl:#ff8fb8;--ac:#8ec9ff}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:"Noto Sans SC",system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--a),var(--b));background-attachment:fixed;overflow-x:hidden}
-body[data-room=huran]{--ink:#1d1d2b;--bd:3px solid #1d1d2b;--r:6px;--sh:6px 6px 0 #1d1d2b;--hl:#ff5fa2;--ac:#4cb8ff;background:repeating-linear-gradient(45deg,#bfe6ff 0 18px,#ffc9e0 18px 36px)}
-body[data-room=tiutiu]{--bd:2px dashed #ff9ec0;--r:14px;--sh:0 4px 0 #bfe0ff;background:linear-gradient(90deg,transparent 54px,#ff9ec0 54px 56px,transparent 56px),repeating-linear-gradient(#fffdf9 0 27px,#bfe0ff 27px 28px)}
-body[data-room=lyn]{--r:32px;--sh:0 12px 30px #9cc7f066;background:radial-gradient(circle at 15% 20%,#fff 0 60px,#fff0 62px),radial-gradient(circle at 25% 24%,#fff 0 45px,#fff0 47px),radial-gradient(circle at 80% 70%,#fff 0 70px,#fff0 72px),radial-gradient(circle at 70% 74%,#fff 0 50px,#fff0 52px),linear-gradient(#bfe3ff,#ffd9ea)}
-body[data-room=sukem]{--ink:#5a3f7a;--bd:3px dotted #b79af0;--r:28px;--sh:0 8px 0 #ffc8de;--hl:#b79af0;background:radial-gradient(circle,#fff 7px,#fff0 8px) 0 0/40px 40px,radial-gradient(circle,#ffffffaa 5px,#fff0 6px) 20px 20px/40px 40px,linear-gradient(135deg,#c9e6ff,#ffd0e3)}
+body{margin:0;min-height:100vh;font-family:"Noto Sans SC",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle,#dcecff 3px,#fff0 4px) 0 0/28px 28px,radial-gradient(circle,#ffe0ec 3px,#fff0 4px) 14px 14px/28px 28px,#fff;overflow-x:hidden}
 #deco{position:fixed;inset:0;pointer-events:none;z-index:0}
 #deco svg{position:absolute;animation:fl 5s ease-in-out infinite;opacity:.85}
 @keyframes fl{50%{transform:translateY(-12px) rotate(6deg)}}
 main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:16px 14px 60px}
 h1{margin:6px 0 2px;text-align:center;font-size:clamp(26px,6vw,40px);display:flex;gap:10px;justify-content:center;align-items:center}
-body[data-room=huran] h1{text-transform:uppercase;transform:skew(-6deg);font-weight:900;letter-spacing:2px}
 .sub{text-align:center;margin:0 0 14px;font-size:14px}
 .tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
 .tab{font:inherit;cursor:pointer;padding:10px 8px;border:var(--bd);border-radius:var(--r);background:#ffffffb8;color:var(--ink);box-shadow:var(--sh);text-align:center;line-height:1.25}
@@ -47,12 +42,20 @@ button.b.p{background:var(--hl)}button.b.g{background:#fff;color:var(--ink)}
 .row{display:flex;gap:8px;margin-top:8px}
 input,textarea{font:inherit;width:100%;border:2px solid #d6e6f7;border-radius:12px;padding:8px 10px;background:#fff;color:#4a4470}
 label{display:block;font-size:13px;margin:8px 0 2px}
-#modal{position:fixed;inset:0;background:#4a447066;display:none;align-items:center;justify-content:center;z-index:5;padding:14px}
-#modal.on{display:flex}#modal .box{width:min(520px,100%);max-height:92vh;overflow:auto;color:#4a4470}
+#modal,.modalx{position:fixed;inset:0;background:#4a447066;display:none;align-items:center;justify-content:center;z-index:5;padding:14px}
+#modal.on,.modalx.on{display:flex}#modal .box,.modalx .box{width:min(520px,100%);max-height:92vh;overflow:auto;color:#4a4470}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#4a4470;color:#fff;padding:8px 16px;border-radius:99px;opacity:0;transition:.3s;z-index:9;pointer-events:none}
 #toast.on{opacity:1}
 .mini{width:44px;height:44px}
 .ok{color:#2a9d6b}.no{color:#d6336c}#chk-res p{margin:6px 0}.sec .row input{min-width:0}
+.awn{position:absolute;top:0;left:0;right:0;height:72px;z-index:1;pointer-events:none;background:radial-gradient(circle at 30px 0,#ffc8de 36px,#fff0 37px),radial-gradient(circle at 90px 0,#bfe3ff 36px,#fff0 37px);background-size:120px 72px;background-repeat:repeat-x;filter:drop-shadow(0 3px 0 #fff)}
+body::before{content:"";position:fixed;inset:0;z-index:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffd3e4' d='M50 90C8 60 0 34 14 18c12-13 30-6 36 6 6-12 24-19 36-6 14 16 4 40-36 72z'/%3E%3C/svg%3E") center 55%/min(80vmin,620px) no-repeat;opacity:.75}
+body::after{content:"⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦ ⭐ ✦";position:fixed;left:0;right:0;bottom:0;height:calc(34px + env(safe-area-inset-bottom,0px));background:#cfe8ff;color:#fff;overflow:hidden;white-space:nowrap;line-height:34px;z-index:3;pointer-events:none;font-size:14px}
+main{padding-top:84px!important;padding-bottom:80px!important}
+.em{position:absolute;font-size:34px;animation:fl 6s ease-in-out infinite}
+.badge{background:linear-gradient(90deg,#bfe3ff,#ffc8de);border-radius:99px;padding:2px 12px;font-size:12px;font-weight:700}
+.lab{color:#7fbfff;font-size:12px;font-weight:700;letter-spacing:1px;margin:12px 0 2px}.ex{white-space:pre-line}.gcard{margin-bottom:16px}
+select{font:inherit;width:100%;border:2px solid #d6e6f7;border-radius:12px;padding:8px;background:#fff;color:#4a4470}
 </style></head><body data-room="huran">
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="sword" viewBox="0 0 64 64"><g stroke="#5b6b8c" stroke-width="1.6" stroke-linejoin="round"><path d="M30 4h4l1 36h-6z" fill="#e3efff"/><rect x="19" y="40" width="26" height="5" rx="2.5" fill="#ffb3d1"/><rect x="29" y="45" width="6" height="12" fill="#a78bfa"/><circle cx="32" cy="60" r="3" fill="#ffb3d1"/></g></symbol>
@@ -62,11 +65,12 @@ label{display:block;font-size:13px;margin:8px 0 2px}
 <symbol id="angel" viewBox="0 0 64 64"><g stroke="#9aa4c4" stroke-width="1.5" fill="#fff"><ellipse cx="14" cy="38" rx="12" ry="8" transform="rotate(-25 14 38)"/><ellipse cx="50" cy="38" rx="12" ry="8" transform="rotate(25 50 38)"/><path d="M20 58q0-16 12-16t12 16z"/><circle cx="32" cy="30" r="12" fill="#fff4e6"/></g><ellipse cx="32" cy="12" rx="10" ry="3.5" fill="none" stroke="#ffd966" stroke-width="3"/><circle cx="28" cy="30" r="1.6" fill="#333"/><circle cx="36" cy="30" r="1.6" fill="#333"/><path d="M29 35q3 3 6 0" stroke="#e57" fill="none"/></symbol>
 <symbol id="devil" viewBox="0 0 64 64"><g stroke="#7a5aa8" stroke-width="1.5"><path d="M18 22L14 6l14 10zM46 22l4-16-14 10z" fill="#c9a8ff"/><path d="M44 54q14 2 12-12" fill="none" stroke-width="2.5"/><path d="M20 60q0-14 12-14t12 14z" fill="#d9b8ff"/><circle cx="32" cy="32" r="14" fill="#ffc2dc"/></g><path d="M24 29l5 2M40 29l-5 2" stroke="#333" stroke-width="2"/><path d="M27 39q5-4 10 0" stroke="#333" fill="none" stroke-width="1.6"/></symbol>
 </defs></svg>
-<div id="deco"></div>
+<div class="awn"></div><div id="deco"></div>
 <main>
 <h1><svg class="mini"><use href="#capy"/></svg><span>Vườn Hán Tự</span><svg class="mini"><use href="#bunny"/></svg></h1>
 <p class="sub" id="sub"></p>
 <div class="tabs" id="tabs"></div>
+<div class="tabs" id="modes" style="grid-template-columns:1fr 1fr"></div>
 <div id="deck"></div>
 <div class="bar" id="bar"></div>
 <div class="box feed"><h3>💌 Bảng tin cả nhà</h3><div id="feed"></div>
@@ -80,7 +84,15 @@ label{display:block;font-size:13px;margin:8px 0 2px}
 <label>Nghĩa của ví dụ</label><input id="f-exvi" maxlength="100">
 <label>Cách nhớ chữ</label><textarea id="f-mn" rows="2" maxlength="200"></textarea>
 <div class="bar"><button class="b g" onclick="closeM()">Huỷ</button><button class="b p" onclick="save()">Lưu 💖</button></div></div></div>
+<div id="gmodal" class="modalx"><div class="box"><h3 id="gmt">Thêm ngữ pháp</h3>
+<label>Tiêu đề * (vd: 是 (shì): A 是 B)</label><input id="g-title" maxlength="60">
+<label>Cấp độ</label><select id="g-level"><option>HSK1</option><option>HSK2</option><option>HSK3</option><option>HSK4</option><option>HSK5</option><option>HSK6</option></select>
+<label>Công thức *</label><input id="g-formula" maxlength="120" placeholder="A + 是 + B">
+<label>Giải thích</label><textarea id="g-explain" rows="3" maxlength="400"></textarea>
+<label>Ví dụ (mỗi dòng một câu)</label><textarea id="g-ex" rows="4" maxlength="500"></textarea>
+<div class="bar"><button class="b g" onclick="$('gmodal').classList.remove('on')">Huỷ</button><button class="b p" onclick="gsave()">Lưu 💖</button></div></div></div>
 <div id="toast"></div>
+<script src="config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
@@ -93,12 +105,14 @@ const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 let room=(location.hash.slice(1) in R)?location.hash.slice(1):"huran",words=[],feed=[],idx=0,fo=0,flip=false,editId=null,db=null,local=false;
 const mine=()=>words.filter(w=>w.room===room).sort((a,b)=>(a.ts||0)-(b.ts||0));
 function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
-function deco(){const k=Object.keys(R).indexOf(room);$("deco").innerHTML=POS.map((p,i)=>`<svg style="left:${p[0]}%;top:${p[1]}%;width:${p[2]}px;height:${p[2]}px;animation-delay:${i*.6}s"><use href="#${SY[(i+k)%6]}"/></svg>`).join("")}
+function deco(){const k=Object.keys(R).indexOf(room);$("deco").innerHTML=POS.map((p,i)=>`<svg style="left:${p[0]}%;top:${p[1]}%;width:${p[2]}px;height:${p[2]}px;animation-delay:${i*.6}s"><use href="#${SY[(i+k)%6]}"/></svg>`).join("")+'<span class="em" style="left:12%;top:62%">🌙</span><span class="em" style="left:80%;top:52%">⭐</span><span class="em" style="left:48%;top:84%">🍥</span>'}
 function go(r){room=r;idx=0;flip=false;location.hash=r;render()}
 function render(){
  document.body.dataset.room=room;deco();
  $("sub").textContent=`${R[room][1]} Phòng của ${R[room][0]} · ${R[room][2]}`;
  $("tabs").innerHTML=Object.keys(R).map(k=>`<button class="tab ${k===room?"on":""}" onclick="go('${k}')"><b>${R[k][1]} ${R[k][0]}</b><small>${words.filter(w=>w.room===k).length} từ</small></button>`).join("");
+ $("modes").innerHTML=[["vocab","📇 Từ vựng"],["gram","📐 Ngữ pháp"]].map(([k,t])=>`<button class="tab ${k===mode?"on":""}" onclick="setMode('${k}')"><b>${t}</b></button>`).join("");
+ if(mode==="gram"){renderGram();return}
  const ws=mine();if(idx>=ws.length)idx=Math.max(0,ws.length-1);
  const w=ws[idx];
  if(!w){$("deck").innerHTML=`<div class="box" style="text-align:center;padding:40px 16px"><svg class="mini" style="width:90px;height:90px"><use href="#capy"/></svg><p>Phòng này chưa có từ nào. Thêm từ đầu tiên nhé!</p><button class="b" onclick="starter()">🌱 Thêm 3 từ mẫu</button></div>`;
@@ -116,7 +130,32 @@ function render(){
 }
 function renderFeed(){$("feed").innerHTML=feed.length?feed.map(m=>`<p>${(R[m.room]||["?","•"])[1]} <b>${esc((R[m.room]||["?"])[0])}</b> ${esc(m.text)} <small>${ago(m.ts)}</small></p>`).join(""):"<p><small>Chưa có gì — thêm từ hoặc nhắn tin để bắt đầu 🐰</small></p>"}
 function ago(t){const s=(Date.now()-t)/1000;return s<60?"vừa xong":s<3600?Math.floor(s/60)+" phút trước":s<86400?Math.floor(s/3600)+" giờ trước":Math.floor(s/86400)+" ngày trước"}
-let chk={},chkIn={};
+let chk={},chkIn={},gs=[],gin={},mode="vocab",gEdit=null;
+function setMode(m){mode=m;render()}
+function gHtml(g){return `<div class="box gcard"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>${esc(g.title)}</b><span class="badge">${esc(g.level)}</span></div>
+<div class="lab">CÔNG THỨC</div><div>${esc(g.formula)}</div>${g.explain?`<div class="lab">GIẢI THÍCH</div><div>${esc(g.explain)}</div>`:""}${g.ex?`<div class="lab">VÍ DỤ</div><div class="ex">${esc(g.ex)}</div>`:""}
+<div class="lab">THỰC HÀNH · GÕ MỘT CÂU</div><div class="row"><input maxlength="100" placeholder="Gõ câu tiếng Trung dùng mẫu này…" value="${esc(gin[g.id]||"")}" oninput="gin['${g.id}']=this.value" onkeydown="if(event.key==='Enter')gcheck('${g.id}')"><button class="b" style="white-space:nowrap" onclick="gcheck('${g.id}')">✓ Kiểm tra</button></div>
+<div id="gr-${g.id}">${chkHtml(g.id)}</div>
+<div class="bar" style="margin:10px 0 0"><button class="b g" onclick="gopen('${g.id}')">✏️ Sửa</button><button class="b g" onclick="gdel('${g.id}')">🗑️ Xoá</button></div></div>`}
+function renderGram(){const L=gs.filter(g=>g.room===room).sort((a,b)=>(a.ts||0)-(b.ts||0));
+ $("deck").innerHTML=L.length?L.map(gHtml).join(""):`<div class="box" style="text-align:center;padding:36px 16px"><svg class="mini" style="width:90px;height:90px"><use href="#bunny"/></svg><p>Chưa có điểm ngữ pháp nào. Thêm điểm đầu tiên nhé!</p><button class="b" onclick="gstarter()">🌱 Thêm mẫu: 是</button></div>`;
+ $("bar").innerHTML=`<button class="b p" onclick="gopen()">＋ Thêm ngữ pháp</button>`}
+async function gcheck(id){const g=gs.find(x=>x.id===id),t=(gin[id]||"").trim();if(!g||!t)return;
+ chk[id]={l:1};$("gr-"+id).innerHTML=chkHtml(id);
+ try{const r=await fetch("/.netlify/functions/check",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text:t,title:g.title,formula:g.formula,explain:g.explain})});
+  if(!r.ok)throw 0;chk[id]=await r.json()}catch(e){chk[id]={err:1}}
+ const el=$("gr-"+id);if(el)el.innerHTML=chkHtml(id)}
+function gopen(id){const g=id?gs.find(x=>x.id===id):null;gEdit=g?g.id:null;$("gmt").textContent=g?"Sửa ngữ pháp ✏️":"Thêm ngữ pháp 🌸";
+ $("g-title").value=g?g.title:"";$("g-level").value=g?g.level:"HSK1";$("g-formula").value=g?g.formula:"";$("g-explain").value=g?(g.explain||""):"";$("g-ex").value=g?(g.ex||""):"";$("gmodal").classList.add("on")}
+async function gput(d,id){try{if(id){if(local)Object.assign(gs.find(x=>x.id===id),d);else await db.collection("grammar").doc(id).update(d)}
+ else{d.room=room;d.ts=Date.now();if(local)gs.push({id:"g"+d.ts+Math.random(),...d});else await db.collection("grammar").add(d)}}catch(e){toast("Chưa lưu được 😢");return false}return true}
+async function gsave(){const d={title:$("g-title").value.trim(),level:$("g-level").value,formula:$("g-formula").value.trim(),explain:$("g-explain").value.trim(),ex:$("g-ex").value.trim()};
+ if(!d.title||!d.formula){toast("Cần có tiêu đề và công thức nhé");return}
+ const e=!!gEdit;if(await gput(d,gEdit)){log((e?"sửa":"thêm")+" ngữ pháp "+d.title);$("gmodal").classList.remove("on");toast("Đã lưu 💖");if(local)render()}}
+async function gdel(id){const g=gs.find(x=>x.id===id);if(!g||!confirm("Xoá điểm ngữ pháp này?"))return;
+ try{if(local)gs=gs.filter(x=>x.id!==id);else await db.collection("grammar").doc(id).delete();log("xoá ngữ pháp "+g.title);if(local)render()}catch(e){toast("Không xoá được")}}
+async function gstarter(){await gput({title:"是 (shì): A 是 B",level:"HSK1",formula:"A + 是 + B",explain:"Dùng để nói A là B (danh từ). Phủ định: 不是.",ex:"我是学生。(Wǒ shì xuésheng.) – Tôi là học sinh.\n他不是老师。(Tā bú shì lǎoshī.) – Anh ấy không phải giáo viên."});log("thêm ngữ pháp mẫu 是");if(local)render()}
+
 function chkHtml(id){const c=chk[id];if(!c)return"";if(c.l)return"<p>Claude đang xem… 🐰</p>";if(c.err)return"<p class='no'>Chưa kết nối được Claude, thử lại sau nhé.</p>";
  return `<p class="${c.ok?"ok":"no"}"><b>${c.ok?"✅ Đúng rồi":"❌ Chưa đúng"}${c.title?" · "+esc(c.title):""}</b></p><p>${esc(c.feedback)}</p>${c.suggestion?`<p>💡 ${esc(c.suggestion)}</p>`:""}`}
 async function check(id){const w=words.find(x=>x.id===id),t=(chkIn[id]||"").trim();if(!w||!t)return;
@@ -151,11 +190,12 @@ window.addEventListener("hashchange",()=>{const r=location.hash.slice(1);if(r in
 render();renderFeed();
 (function(){
  // ====== DÁN CẤU HÌNH FIREBASE CỦA BẠN VÀO ĐÂY ======
- const firebaseConfig={apiKey:"AIzaSyAiuojmibMb7YeC6weKTgpQA9zzznTmywQ",authDomain:"hoc-hsk-8b1d9.firebaseapp.com",projectId:"hoc-hsk-8b1d9",storageBucket: "hoc-hsk-8b1d9.firebasestorage.app", messagingSenderId: "417073246997",appId:"1:417073246997:web:0995f7947625a48114ef1c"};
+ const firebaseConfig=window.FIREBASE_CONFIG||{apiKey:"DÁN"};
  // ===================================================
  try{if(firebaseConfig.apiKey.startsWith("DÁN"))throw 0;firebase.initializeApp(firebaseConfig);db=firebase.firestore()}catch(e){}
  if(!db){local=true;toast("Chế độ cá nhân: chưa điền cấu hình Firebase");return}
  db.collection("words").onSnapshot(s=>{words=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>toast("Không đọc được dữ liệu, kiểm tra Firestore"));
+ db.collection("grammar").onSnapshot(s=>{gs=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{});
  db.collection("feed").orderBy("ts","desc").limit(15).onSnapshot(s=>{feed=s.docs.map(d=>d.data());renderFeed()},()=>{});
 })();
 </script></body></html>
