@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vườn Hán Tự · 汉字乐园</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Noto+Sans+SC:wght@700&family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=Long+Cang&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--a:#bfe3ff;--b:#ffc8de;--ink:#4a4470;--card:#fff;--bd:2px solid #fff;--r:24px;--sh:0 8px 24px #8fb5e655;--hl:#ff8fb8;--ac:#8ec9ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Noto Sans SC",system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--a),var(--b));background-attachment:fixed;overflow-x:hidden}
+body[data-room=huran]{--ink:#1d1d2b;--bd:3px solid #1d1d2b;--r:6px;--sh:6px 6px 0 #1d1d2b;--hl:#ff5fa2;--ac:#4cb8ff;background:repeating-linear-gradient(45deg,#bfe6ff 0 18px,#ffc9e0 18px 36px)}
+body[data-room=tiutiu]{--bd:2px dashed #ff9ec0;--r:14px;--sh:0 4px 0 #bfe0ff;background:linear-gradient(90deg,transparent 54px,#ff9ec0 54px 56px,transparent 56px),repeating-linear-gradient(#fffdf9 0 27px,#bfe0ff 27px 28px)}
+body[data-room=lyn]{--r:32px;--sh:0 12px 30px #9cc7f066;background:radial-gradient(circle at 15% 20%,#fff 0 60px,#fff0 62px),radial-gradient(circle at 25% 24%,#fff 0 45px,#fff0 47px),radial-gradient(circle at 80% 70%,#fff 0 70px,#fff0 72px),radial-gradient(circle at 70% 74%,#fff 0 50px,#fff0 52px),linear-gradient(#bfe3ff,#ffd9ea)}
+body[data-room=sukem]{--ink:#5a3f7a;--bd:3px dotted #b79af0;--r:28px;--sh:0 8px 0 #ffc8de;--hl:#b79af0;background:radial-gradient(circle,#fff 7px,#fff0 8px) 0 0/40px 40px,radial-gradient(circle,#ffffffaa 5px,#fff0 6px) 20px 20px/40px 40px,linear-gradient(135deg,#c9e6ff,#ffd0e3)}
+#deco{position:fixed;inset:0;pointer-events:none;z-index:0}
+#deco svg{position:absolute;animation:fl 5s ease-in-out infinite;opacity:.85}
+@keyframes fl{50%{transform:translateY(-12px) rotate(6deg)}}
+main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:16px 14px 60px}
+h1{margin:6px 0 2px;text-align:center;font-size:clamp(26px,6vw,40px);display:flex;gap:10px;justify-content:center;align-items:center}
+body[data-room=huran] h1{text-transform:uppercase;transform:skew(-6deg);font-weight:900;letter-spacing:2px}
+.sub{text-align:center;margin:0 0 14px;font-size:14px}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.tab{font:inherit;cursor:pointer;padding:10px 8px;border:var(--bd);border-radius:var(--r);background:#ffffffb8;color:var(--ink);box-shadow:var(--sh);text-align:center;line-height:1.25}
+.tab b{display:block;font-size:16px}.tab small{opacity:.75}
+.tab.on{background:var(--hl);color:#fff}
+.box{background:var(--card);border:var(--bd);border-radius:var(--r);box-shadow:var(--sh);padding:16px}
+.scene{perspective:1200px;cursor:pointer}
+.ci{display:grid;transition:transform .6s;transform-style:preserve-3d}
+.ci.f{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;min-height:330px;border:var(--bd);border-radius:var(--r);background:var(--card);box-shadow:var(--sh);padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
+.back{transform:rotateY(180deg);justify-content:flex-start;align-items:stretch;text-align:left;overflow:auto;max-height:520px}
+.han{font-size:clamp(90px,26vw,170px);line-height:1.1;word-break:keep-all}
+.tag{background:var(--b);padding:2px 12px;border-radius:99px;font-size:13px}
+.hint{font-size:13px;opacity:.6}
+.py{font-size:24px;font-weight:700;color:var(--hl)}.vi{font-size:20px;font-weight:700}
+.sec{background:#f3f9ff;border-radius:14px;padding:8px 12px;font-size:15px}
+.sec i{display:block;font-style:normal;font-size:12px;opacity:.65;margin-bottom:2px}
+.fonts{display:flex;flex-wrap:wrap;gap:8px}
+.fonts span{background:#fff;border:1px solid #d6e6f7;border-radius:10px;padding:2px 10px;font-size:30px;position:relative}
+.fonts em{display:block;font:11px system-ui;opacity:.6;text-align:center}
+.bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
+button.b{font:inherit;cursor:pointer;border:var(--bd);background:var(--ac);color:#fff;border-radius:99px;padding:8px 14px;box-shadow:var(--sh);font-weight:700}
+button.b.p{background:var(--hl)}button.b.g{background:#fff;color:var(--ink)}
+.cnt{text-align:center;font-size:14px;opacity:.8}
+.feed{margin-top:18px}.feed h3{margin:0 0 8px}
+.feed p{margin:4px 0;font-size:14px}.feed small{opacity:.6}
+.row{display:flex;gap:8px;margin-top:8px}
+input,textarea{font:inherit;width:100%;border:2px solid #d6e6f7;border-radius:12px;padding:8px 10px;background:#fff;color:#4a4470}
+label{display:block;font-size:13px;margin:8px 0 2px}
+#modal{position:fixed;inset:0;background:#4a447066;display:none;align-items:center;justify-content:center;z-index:5;padding:14px}
+#modal.on{display:flex}#modal .box{width:min(520px,100%);max-height:92vh;overflow:auto;color:#4a4470}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#4a4470;color:#fff;padding:8px 16px;border-radius:99px;opacity:0;transition:.3s;z-index:9;pointer-events:none}
+#toast.on{opacity:1}
+.mini{width:44px;height:44px}
+.ok{color:#2a9d6b}.no{color:#d6336c}#chk-res p{margin:6px 0}.sec .row input{min-width:0}
+</style></head><body data-room="huran">
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="sword" viewBox="0 0 64 64"><g stroke="#5b6b8c" stroke-width="1.6" stroke-linejoin="round"><path d="M30 4h4l1 36h-6z" fill="#e3efff"/><rect x="19" y="40" width="26" height="5" rx="2.5" fill="#ffb3d1"/><rect x="29" y="45" width="6" height="12" fill="#a78bfa"/><circle cx="32" cy="60" r="3" fill="#ffb3d1"/></g></symbol>
+<symbol id="violin" viewBox="0 0 64 64"><g stroke="#8a5a44" stroke-width="1.6"><rect x="30" y="2" width="4" height="22" fill="#7a4b3a"/><circle cx="32" cy="27" r="10" fill="#ffcfa8"/><circle cx="32" cy="43" r="14" fill="#ffc29b"/><path d="M28 38v8M36 38v8" fill="none"/><path d="M52 8L14 58" stroke="#c9a0ff" stroke-width="2.5"/></g></symbol>
+<symbol id="capy" viewBox="0 0 64 64"><g stroke="#8a5a3a" stroke-width="1.5" fill="#d2a279"><rect x="10" y="44" width="7" height="12" rx="3"/><rect x="34" y="44" width="7" height="12" rx="3"/><ellipse cx="30" cy="40" rx="24" ry="14"/><ellipse cx="50" cy="32" rx="11" ry="10"/><circle cx="44" cy="23" r="3.5"/><ellipse cx="57" cy="36" rx="5" ry="4" fill="#b98259"/></g><circle cx="50" cy="29" r="1.6" fill="#333"/><circle cx="46" cy="36" r="3" fill="#ffb3c7" opacity=".8"/></symbol>
+<symbol id="bunny" viewBox="0 0 64 64"><g stroke="#9aa4c4" stroke-width="1.5" fill="#fff"><ellipse cx="24" cy="14" rx="6" ry="14"/><ellipse cx="40" cy="14" rx="6" ry="14"/><ellipse cx="32" cy="50" rx="16" ry="11"/><circle cx="32" cy="36" r="13"/></g><ellipse cx="24" cy="14" rx="2.5" ry="9" fill="#ffc0d6"/><ellipse cx="40" cy="14" rx="2.5" ry="9" fill="#ffc0d6"/><circle cx="27" cy="35" r="1.6" fill="#333"/><circle cx="37" cy="35" r="1.6" fill="#333"/><circle cx="32" cy="39" r="2" fill="#ff9ec0"/></symbol>
+<symbol id="angel" viewBox="0 0 64 64"><g stroke="#9aa4c4" stroke-width="1.5" fill="#fff"><ellipse cx="14" cy="38" rx="12" ry="8" transform="rotate(-25 14 38)"/><ellipse cx="50" cy="38" rx="12" ry="8" transform="rotate(25 50 38)"/><path d="M20 58q0-16 12-16t12 16z"/><circle cx="32" cy="30" r="12" fill="#fff4e6"/></g><ellipse cx="32" cy="12" rx="10" ry="3.5" fill="none" stroke="#ffd966" stroke-width="3"/><circle cx="28" cy="30" r="1.6" fill="#333"/><circle cx="36" cy="30" r="1.6" fill="#333"/><path d="M29 35q3 3 6 0" stroke="#e57" fill="none"/></symbol>
+<symbol id="devil" viewBox="0 0 64 64"><g stroke="#7a5aa8" stroke-width="1.5"><path d="M18 22L14 6l14 10zM46 22l4-16-14 10z" fill="#c9a8ff"/><path d="M44 54q14 2 12-12" fill="none" stroke-width="2.5"/><path d="M20 60q0-14 12-14t12 14z" fill="#d9b8ff"/><circle cx="32" cy="32" r="14" fill="#ffc2dc"/></g><path d="M24 29l5 2M40 29l-5 2" stroke="#333" stroke-width="2"/><path d="M27 39q5-4 10 0" stroke="#333" fill="none" stroke-width="1.6"/></symbol>
+</defs></svg>
+<div id="deco"></div>
+<main>
+<h1><svg class="mini"><use href="#capy"/></svg><span>Vườn Hán Tự</span><svg class="mini"><use href="#bunny"/></svg></h1>
+<p class="sub" id="sub"></p>
+<div class="tabs" id="tabs"></div>
+<div id="deck"></div>
+<div class="bar" id="bar"></div>
+<div class="box feed"><h3>💌 Bảng tin cả nhà</h3><div id="feed"></div>
+<div class="row"><input id="msg" maxlength="120" placeholder="Nhắn gì đó cho mọi người…"><button class="b p" onclick="say()">Gửi</button></div></div>
+</main>
+<div id="modal"><div class="box"><h3 id="mt">Thêm từ</h3>
+<label>Chữ Hán *</label><input id="f-han" maxlength="12">
+<label>Pinyin</label><input id="f-py" maxlength="40">
+<label>Nghĩa *</label><input id="f-vi" maxlength="80">
+<label>Ví dụ (tiếng Trung)</label><input id="f-ex" maxlength="80">
+<label>Nghĩa của ví dụ</label><input id="f-exvi" maxlength="100">
+<label>Cách nhớ chữ</label><textarea id="f-mn" rows="2" maxlength="200"></textarea>
+<div class="bar"><button class="b g" onclick="closeM()">Huỷ</button><button class="b p" onclick="save()">Lưu 💖</button></div></div></div>
+<div id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const R={huran:["Huran","🎸","Punk xanh hồng"],tiutiu:["Tiutiu Lee","🎒","Cô học sinh đáng yêu"],lyn:["Lyn","☁️","Mây xanh hồng"],sukem:["Sukem","👼😈","Chấm bi thiên thần & ác quỷ"]};
+const F=[["Noto Serif SC","Tống"],["Noto Sans SC","Hắc"],["Ma Shan Zheng","Thư pháp"],["ZCOOL KuaiLe","Vui"],["Long Cang","Thảo"],["ZCOOL XiaoWei","Mảnh"]];
+const SY=["sword","violin","capy","bunny","angel","devil"];
+const POS=[[3,8,56],[88,6,60],[6,45,64],[90,40,56],[4,80,60],[85,78,70],[45,92,54],[70,18,48]];
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let room=(location.hash.slice(1) in R)?location.hash.slice(1):"huran",words=[],feed=[],idx=0,fo=0,flip=false,editId=null,db=null,local=false;
+const mine=()=>words.filter(w=>w.room===room).sort((a,b)=>(a.ts||0)-(b.ts||0));
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1800)}
+function deco(){const k=Object.keys(R).indexOf(room);$("deco").innerHTML=POS.map((p,i)=>`<svg style="left:${p[0]}%;top:${p[1]}%;width:${p[2]}px;height:${p[2]}px;animation-delay:${i*.6}s"><use href="#${SY[(i+k)%6]}"/></svg>`).join("")}
+function go(r){room=r;idx=0;flip=false;location.hash=r;render()}
+function render(){
+ document.body.dataset.room=room;deco();
+ $("sub").textContent=`${R[room][1]} Phòng của ${R[room][0]} · ${R[room][2]}`;
+ $("tabs").innerHTML=Object.keys(R).map(k=>`<button class="tab ${k===room?"on":""}" onclick="go('${k}')"><b>${R[k][1]} ${R[k][0]}</b><small>${words.filter(w=>w.room===k).length} từ</small></button>`).join("");
+ const ws=mine();if(idx>=ws.length)idx=Math.max(0,ws.length-1);
+ const w=ws[idx];
+ if(!w){$("deck").innerHTML=`<div class="box" style="text-align:center;padding:40px 16px"><svg class="mini" style="width:90px;height:90px"><use href="#capy"/></svg><p>Phòng này chưa có từ nào. Thêm từ đầu tiên nhé!</p><button class="b" onclick="starter()">🌱 Thêm 3 từ mẫu</button></div>`;
+  $("bar").innerHTML=`<button class="b p" onclick="openM()">＋ Thêm từ</button>`;return}
+ const f=F[(fo+idx)%F.length];
+ $("deck").innerHTML=`<div class="cnt">${idx+1} / ${ws.length}</div><div class="scene" onclick="fl()"><div class="ci ${flip?"f":""}" id="ci">
+ <div class="face"><span class="tag">Font: ${f[1]}</span><div class="han" style="font-family:'${f[0]}',serif">${esc(w.han)}</div><div class="hint">chạm để lật thẻ ✨</div></div>
+ <div class="face back"><div style="text-align:center"><div class="py">${esc(w.py)}</div><div class="vi">${esc(w.vi)}</div></div>
+ ${w.ex?`<div class="sec"><i>Ví dụ</i>${esc(w.ex)}<br><small>${esc(w.exvi)}</small></div>`:""}
+ ${w.mn?`<div class="sec"><i>🧠 Cách nhớ chữ</i>${esc(w.mn)}</div>`:""}
+ <div class="sec" onclick="event.stopPropagation()"><i>✍️ Kiểm tra cùng Claude</i><div class="row"><input id="chk-in" maxlength="100" placeholder="Gõ từ hoặc câu tiếng Trung…" value="${esc(chkIn[w.id]||"")}" oninput="chkIn['${w.id}']=this.value" onkeydown="if(event.key==='Enter')check('${w.id}')"><button class="b" style="white-space:nowrap" onclick="check('${w.id}')">✓ Kiểm tra</button></div><div id="chk-res">${chkHtml(w.id)}</div></div>
+ <div class="sec"><i>Làm quen nhiều font</i><div class="fonts">${F.map(x=>`<span style="font-family:'${x[0]}'">${esc(w.han)}<em>${x[1]}</em></span>`).join("")}</div></div></div></div></div>`;
+ $("bar").innerHTML=`<button class="b g" onclick="nav(-1)">◀</button><button class="b" onclick="say1()">🔊 Nghe</button><button class="b" onclick="say1(.5)">🐢 Chậm</button><button class="b g" onclick="exs()">🔊 Ví dụ</button><button class="b g" onclick="fo++;render()">🔤 Đổi font</button><button class="b g" onclick="nav(0)">🔀</button><button class="b g" onclick="nav(1)">▶</button>
+ <button class="b p" onclick="openM()">＋ Thêm</button><button class="b p" onclick="openM(true)">✏️ Sửa</button><button class="b g" onclick="del()">🗑️</button>`;
+}
+function renderFeed(){$("feed").innerHTML=feed.length?feed.map(m=>`<p>${(R[m.room]||["?","•"])[1]} <b>${esc((R[m.room]||["?"])[0])}</b> ${esc(m.text)} <small>${ago(m.ts)}</small></p>`).join(""):"<p><small>Chưa có gì — thêm từ hoặc nhắn tin để bắt đầu 🐰</small></p>"}
+function ago(t){const s=(Date.now()-t)/1000;return s<60?"vừa xong":s<3600?Math.floor(s/60)+" phút trước":s<86400?Math.floor(s/3600)+" giờ trước":Math.floor(s/86400)+" ngày trước"}
+let chk={},chkIn={};
+function chkHtml(id){const c=chk[id];if(!c)return"";if(c.l)return"<p>Claude đang xem… 🐰</p>";if(c.err)return"<p class='no'>Chưa kết nối được Claude, thử lại sau nhé.</p>";
+ return `<p class="${c.ok?"ok":"no"}"><b>${c.ok?"✅ Đúng rồi":"❌ Chưa đúng"}${c.title?" · "+esc(c.title):""}</b></p><p>${esc(c.feedback)}</p>${c.suggestion?`<p>💡 ${esc(c.suggestion)}</p>`:""}`}
+async function check(id){const w=words.find(x=>x.id===id),t=(chkIn[id]||"").trim();if(!w||!t)return;
+ chk[id]={l:1};$("chk-res").innerHTML=chkHtml(id);
+ try{const r=await fetch("/.netlify/functions/check",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({text:t,word:w.han,vi:w.vi})});
+  if(!r.ok)throw 0;chk[id]=await r.json()}catch(e){chk[id]={err:1}}
+ const el=$("chk-res"),cur=mine()[idx];if(el&&cur&&cur.id===id)el.innerHTML=chkHtml(id)}
+function fl(){flip=!flip;$("ci").classList.toggle("f")}
+function nav(d){const n=mine().length;if(!n)return;idx=d===0?Math.floor(Math.random()*n):(idx+d+n)%n;flip=false;render()}
+function say1(r){const w=mine()[idx];if(w)speak(w.han,r||.85)}
+function exs(){const w=mine()[idx];if(w&&w.ex)speak(w.ex,.85);else toast("Chưa có câu ví dụ")}
+function speak(t,r){if(!window.speechSynthesis){toast("Trình duyệt chưa hỗ trợ đọc");return}
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="zh-CN";u.rate=r;
+ const v=speechSynthesis.getVoices().find(x=>/^zh/i.test(x.lang));if(v)u.voice=v;speechSynthesis.speak(u)}
+function openM(edit){const w=edit?mine()[idx]:null;editId=w?w.id:null;$("mt").textContent=w?"Sửa từ ✏️":"Thêm từ mới 🌸";
+ [["han","han"],["py","py"],["vi","vi"],["ex","ex"],["exvi","exvi"],["mn","mn"]].forEach(([i,k])=>$("f-"+i).value=w?(w[k]||""):"");$("modal").classList.add("on")}
+function closeM(){$("modal").classList.remove("on")}
+function log(text){const m={room,text,ts:Date.now()};if(local){feed.unshift(m);renderFeed()}else db.collection("feed").add(m).catch(()=>{})}
+async function put(d){try{
+ if(editId){if(local)Object.assign(words.find(w=>w.id===editId),d);else await db.collection("words").doc(editId).update(d)}
+ else{d.ts=Date.now();d.room=room;if(local)words.push({id:"l"+d.ts+Math.random(),...d});else await db.collection("words").add(d)}
+ }catch(e){toast("Chưa lưu được 😢 (cần quyền chỉnh sửa)");return false}return true}
+async function save(){const g=i=>$("f-"+i).value.trim();const d={han:g("han"),py:g("py"),vi:g("vi"),ex:g("ex"),exvi:g("exvi"),mn:g("mn")};
+ if(!d.han||!d.vi){toast("Cần có chữ Hán và nghĩa nhé");return}
+ const wasEdit=!!editId;if(await put(d)){log((wasEdit?"sửa từ ":"thêm từ ")+d.han+" — "+d.vi);closeM();if(!wasEdit)idx=mine().length;toast("Đã lưu 💖");if(local)render()}}
+async function del(){const w=mine()[idx];if(!w||!confirm("Xoá từ "+w.han+"?"))return;
+ try{if(local)words=words.filter(x=>x.id!==w.id);else await db.collection("words").doc(w.id).delete();log("xoá từ "+w.han);if(local)render()}catch(e){toast("Không xoá được")}}
+async function starter(){editId=null;for(const d of [{han:"你好",py:"nǐ hǎo",vi:"xin chào",ex:"你好，我叫小兔。",exvi:"Xin chào, mình tên là Tiểu Thỏ.",mn:"你 = người (亻) + 尔; 好 = nữ (女) + tử (子): người nữ có con là điều tốt."},{han:"谢谢",py:"xièxie",vi:"cảm ơn",ex:"谢谢你的小提琴！",exvi:"Cảm ơn cây violin của bạn!",mn:"Có 言 (lời nói) bên trái, 射 là bắn: lời cảm ơn bắn thẳng vào tim."},{han:"可爱",py:"kě’ài",vi:"dễ thương",ex:"水豚很可爱。",exvi:"Capybara rất dễ thương.",mn:"爱 có 心 (trái tim) ở giữa: thứ đáng yêu thì có tim."}])await put({...d});log("thêm 3 từ mẫu");if(local)render()}
+function say(){const t=$("msg").value.trim();if(!t)return;$("msg").value="";log(t)}
+$("msg").addEventListener("keydown",e=>{if(e.key==="Enter")say()});
+window.addEventListener("hashchange",()=>{const r=location.hash.slice(1);if(r in R&&r!==room)go(r)});
+render();renderFeed();
+(function(){
+ // ====== DÁN CẤU HÌNH FIREBASE CỦA BẠN VÀO ĐÂY ======
+ const firebaseConfig={apiKey:"AIzaSyAiuojmibMb7YeC6weKTgpQA9zzznTmywQ",authDomain:"hoc-hsk-8b1d9.firebaseapp.com",projectId:"hoc-hsk-8b1d9",storageBucket: "hoc-hsk-8b1d9.firebasestorage.app", messagingSenderId: "417073246997",appId:"1:417073246997:web:0995f7947625a48114ef1c"};
+ // ===================================================
+ try{if(firebaseConfig.apiKey.startsWith("DÁN"))throw 0;firebase.initializeApp(firebaseConfig);db=firebase.firestore()}catch(e){}
+ if(!db){local=true;toast("Chế độ cá nhân: chưa điền cấu hình Firebase");return}
+ db.collection("words").onSnapshot(s=>{words=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>toast("Không đọc được dữ liệu, kiểm tra Firestore"));
+ db.collection("feed").orderBy("ts","desc").limit(15).onSnapshot(s=>{feed=s.docs.map(d=>d.data());renderFeed()},()=>{});
+})();
+</script></body></html>
